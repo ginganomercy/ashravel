@@ -24,9 +24,21 @@ TurboBlade is built on the *HTML-over-the-wire* philosophy. Your Laravel backend
 
 ---
 
+## 🖥️ Server Requirements & Compatibility
+
+Ashravel is designed to be highly compatible with both modern and legacy enterprise applications. Because the core magic happens in Vanilla JavaScript, the PHP footprint is extremely minimal.
+
+**Supported Versions:**
+- **PHP:** `8.0`, `8.1`, `8.2`, `8.3`
+- **Laravel:** `9.x`, `10.x`, `11.x`
+
+*(Note: We intentionally drop support for PHP 7.x and Laravel 8 to encourage modern security standards, even though the code technically could run on them).*
+
+---
+
 ## 📦 Installation
 
-Install the package via Composer (Requires PHP 8.1+ & Laravel 10+):
+Install the package via Composer:
 ```bash
 composer require ashravel/turboblade
 ```

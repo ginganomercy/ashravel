@@ -125,7 +125,8 @@ TurboBlade safely re-evaluates *inline* scripts (e.g., `<script>alert('hi')</scr
 
 ## 👨‍💻 Author
 **Rafly A.R**
-Instagram: [@galaxy_scream](https://instagram.com/galaxy_scream)
+📧 Email: raflypriyantoro@gmail.com
+📸 Instagram: [@galaxy_scream](https://instagram.com/galaxy_scream)
 
 ---
 

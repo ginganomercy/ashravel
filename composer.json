@@ -1,12 +1,13 @@
 {
     "name": "ashravel/turboblade",
     "description": "Zero-JS Single Page Application (SPA) functionality for Laravel Blade.",
+    "keywords": ["laravel", "spa", "pjax", "livewire", "inertia", "turboblade", "blade"],
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Ashravel Architect",
-            "email": "architect@ashravel.com"
+            "name": "Rafly A.R",
+            "email": "raflypriyantoro@gmail.com"
         }
     ],
     "require": {

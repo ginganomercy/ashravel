@@ -38,9 +38,9 @@ Ashravel is designed to be highly compatible with both modern and legacy enterpr
 
 ## 📦 Installation
 
-Install the package via Composer:
+Install the package via Composer (we recommend pinning to a major version):
 ```bash
-composer require ashravel/turboblade
+composer require ashravel/turboblade:"^1.0"
 ```
 
 Publish the JavaScript assets to your public directory:

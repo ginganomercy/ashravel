@@ -111,6 +111,20 @@ document.addEventListener('turboblade:load', function(event) {
 
 ---
 
+## ⚠️ SPA Architectural Gotchas (Must Read)
+
+Because TurboBlade transforms your traditional app into a Single Page Application, the browser never actually performs a hard refresh. Please be aware of these two common SPA pitfalls:
+
+### 1. Memory Leaks (Global Event Listeners)
+If you attach an event listener to `window` or `document` inside a specific page (e.g., `welcome.blade.php`), it will not be destroyed when the user navigates away. If the user visits that page 10 times, the listener will be attached 10 times, causing a memory leak.
+**Solution:** Always bind page-specific listeners to local DOM elements (which get destroyed by TurboBlade during navigation), OR explicitly remove global listeners, OR initialize them once in your main layout.
+
+### 2. External Scripts in the Body
+TurboBlade safely re-evaluates *inline* scripts (e.g., `<script>alert('hi')</script>`) when navigating. However, it will **ignore** external scripts (e.g., `<script src="https://stripe.com/v3/"></script>`) if they are placed inside the `<body>`.
+**Solution:** Always place external `<script src="...">` tags inside the `<head>` of your layout. TurboBlade's smart asset merger will detect and load them perfectly.
+
+---
+
 ## 🧠 Core Features Summary
 - **Zero-Config:** 1 line of code to turn your app into an SPA.
 - **CSRF Safe:** Automatically updates Laravel's `@csrf` tokens in the background on every navigation.

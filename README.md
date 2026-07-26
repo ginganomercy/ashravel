@@ -123,6 +123,10 @@ If you attach an event listener to `window` or `document` inside a specific page
 TurboBlade safely re-evaluates *inline* scripts (e.g., `<script>alert('hi')</script>`) when navigating. However, it will **ignore** external scripts (e.g., `<script src="https://stripe.com/v3/"></script>`) if they are placed inside the `<body>`.
 **Solution:** Always place external `<script src="...">` tags inside the `<head>` of your layout. TurboBlade's smart asset merger will detect and load them perfectly.
 
+## 👨‍💻 Author
+**Rafly A.R**
+Instagram: [@galaxy_scream](https://instagram.com/galaxy_scream)
+
 ---
 
 ## 🧠 Core Features Summary

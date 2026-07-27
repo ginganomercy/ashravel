@@ -20,6 +20,18 @@
             "Ashravel\\TurboBlade\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Ashravel\\TurboBlade\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0",
+        "phpunit/phpunit": "^10.0"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
     "extra": {
         "laravel": {
             "providers": [

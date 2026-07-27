@@ -1,5 +1,5 @@
 {
-    "name": "ashravel/turboblade",
+    "name": "jati/ashravel",
     "description": "Zero-JS Single Page Application (SPA) functionality for Laravel Blade.",
     "keywords": ["laravel", "spa", "pjax", "livewire", "inertia", "turboblade", "blade"],
     "type": "library",

@@ -123,6 +123,61 @@ If you attach an event listener to `window` or `document` inside a specific page
 TurboBlade safely re-evaluates *inline* scripts (e.g., `<script>alert('hi')</script>`) when navigating. However, it will **ignore** external scripts (e.g., `<script src="https://stripe.com/v3/"></script>`) if they are placed inside the `<body>`.
 **Solution:** Always place external `<script src="...">` tags inside the `<head>` of your layout. TurboBlade's smart asset merger will detect and load them perfectly.
 
+---
+
+## 🛡️ Server-Side HTTP Middleware & Redirect Support
+
+To handle SPA HTTP 301/302 Redirects and force hard browser reloads from your controllers, register the optional **`TurboBladeMiddleware`**:
+
+### 1. Registering the Middleware
+In `bootstrap/app.php` (Laravel 11+) or `app/Http/Kernel.php` (Laravel 10 and below):
+```php
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->web(append: [
+        \Ashravel\TurboBlade\Middleware\TurboBladeMiddleware::class,
+    ]);
+})
+```
+- **SPA Redirect Support:** When a frontend SPA request (`X-TurboBlade: true`) encounters a backend redirect, the middleware attaches an `X-TurboBlade-Location` header so JavaScript can accurately update `history.pushState`.
+
+### 2. Forcing a Hard Browser Reload
+When you need to force a full hard page reload (e.g., after login, logout, or session reset), use the static helper in your Controller:
+```php
+use Ashravel\TurboBlade\Middleware\TurboBladeMiddleware;
+
+public function logout(Request $request)
+{
+    Auth::logout();
+    $response = redirect('/login');
+    
+    return TurboBladeMiddleware::forceReload($response);
+}
+```
+
+---
+
+## 🧪 Testing & Verification
+
+Ashravel includes an automated test suite using **PHPUnit 10** and **Orchestra Testbench 9**.
+
+To run the verification suite locally:
+```bash
+# 1. Install development dependencies
+composer install
+
+# 2. Run the test suite
+composer test
+# or
+vendor/bin/phpunit
+```
+
+The test suite validates:
+- **Blade Directive:** Compilation and rendering of `@turbobladeScripts`.
+- **Asset Publishing:** Execution of `artisan vendor:publish --tag="turboblade-assets"`.
+- **HTTP Middleware:** SPA redirect location headers (`X-TurboBlade-Location`) and reload instructions (`X-TurboBlade-Reload`).
+
+---
+
 ## 👨‍💻 Author
 **Rafly A.R**
 📧 Email: raflypriyantoro@gmail.com
@@ -135,3 +190,4 @@ TurboBlade safely re-evaluates *inline* scripts (e.g., `<script>alert('hi')</scr
 - **CSRF Safe:** Automatically updates Laravel's `@csrf` tokens in the background on every navigation.
 - **Scroll Memory:** Remembers your exact scroll position when you press the browser's "Back" button.
 - **Asset Merging:** Automatically downloads new `<link>` CSS files if the new page requires them.
+- **Redirect & Reload Aware:** Full server-side middleware support for HTTP 302 redirects and forced reloads.
